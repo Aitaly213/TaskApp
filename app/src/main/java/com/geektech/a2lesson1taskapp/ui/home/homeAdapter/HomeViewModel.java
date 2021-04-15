@@ -1,4 +1,4 @@
-package com.geektech.a2lesson1taskapp.ui.home;
+package com.geektech.a2lesson1taskapp.ui.home.homeAdapter;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

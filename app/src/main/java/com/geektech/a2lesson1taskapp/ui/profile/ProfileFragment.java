@@ -27,7 +27,6 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
 
     private ImageView imageClick;
-    private ImageView imageCheck;
 
     private ActivityResultLauncher<String> mGetContent;
 
@@ -43,7 +42,6 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         imageClick = view.findViewById(R.id.addImage);
-        imageCheck=view.findViewById(R.id.imageCheck);
 
         imageClick.setOnClickListener(v -> {
             openGallery();
@@ -52,7 +50,7 @@ public class ProfileFragment extends Fragment {
         mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),new ActivityResultCallback<Uri>(){
             @Override
             public void onActivityResult(Uri result) {
-                imageCheck.setImageURI(result);
+                imageClick.setImageURI(result);
             }
         });
     }
