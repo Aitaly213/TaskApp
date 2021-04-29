@@ -36,4 +36,9 @@
         android:name="com.geektech.a2lesson1taskapp.ui.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.geektech.a2lesson1taskapp.ui.onBoard.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" />
 </navigation>

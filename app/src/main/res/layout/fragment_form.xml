@@ -8,12 +8,13 @@
     tools:context=".ui.FormFragment">
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
+        android:id="@+id/editTitle"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:inputType="textCapSentences"
         android:textSize="20sp"
-        android:hint="@string/hint"
+        android:hint="@string/hintTitle"
+
         android:paddingStart="16dp"
         android:background="@drawable/custom_type"
         android:layout_marginTop="50dp"
@@ -22,6 +23,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/editDesc"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences"
+        android:textSize="16sp"
+        android:hint="@string/hintDesc"
+        android:paddingStart="16dp"
+        android:background="@drawable/custom_type"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTitle"
         tools:ignore="RtlSymmetry"
         android:autofillHints="" />
 
@@ -34,6 +53,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/custom_type"/>
+        android:background="@drawable/custom_type" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnSave"
+        android:text="ok"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_margin="20dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

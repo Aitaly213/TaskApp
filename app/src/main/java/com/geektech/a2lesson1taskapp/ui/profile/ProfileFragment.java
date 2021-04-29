@@ -1,61 +1,74 @@
 package com.geektech.a2lesson1taskapp.ui.profile;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.ActivityResultRegistry;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import android.telephony.ims.RegistrationManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import com.geektech.a2lesson1taskapp.Prefs;
+import com.geektech.a2lesson1taskapp.databinding.FragmentProfileBinding;
 
-
-import com.geektech.a2lesson1taskapp.R;
+import org.jetbrains.annotations.NotNull;
 
 
 public class ProfileFragment extends Fragment {
-    private ProfileViewModel profileViewModel;
 
-    private ImageView imageClick;
+    FragmentProfileBinding binding;
+    Prefs prefs;
 
     private ActivityResultLauncher<String> mGetContent;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        prefs = new Prefs(getContext());
+    }
+
+    @Override
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
-        return  inflater.inflate(R.layout.fragment_profile, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageClick = view.findViewById(R.id.addImage);
 
-        imageClick.setOnClickListener(v -> {
-            openGallery();
-        });
+        binding.addImage.setOnClickListener(v -> openGallery());
+        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), result -> binding.addImage.setImageURI(result));
 
-        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),new ActivityResultCallback<Uri>(){
-            @Override
-            public void onActivityResult(Uri result) {
-                imageClick.setImageURI(result);
-            }
-        });
+        binding.editName.setText(prefs.getProfileName());
+        binding.editName.addTextChangedListener(nameWatcher);
     }
 
     private void openGallery() {
         mGetContent.launch("image/*");
     }
+
+    private final TextWatcher nameWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            prefs.saveProfileName(binding.editName.getText().toString());
+        }
+    };
 }

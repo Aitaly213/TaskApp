@@ -10,4 +10,13 @@
     <string name="hint">Введите текст</string>
     <string name="save">Save</string>
     <string name="dialog_delete_question">Вы хотите удалить этот элемент?</string>
+    <string name="title_description">Title description</string>
+    <string name="start">Start</string>
+    <string name="skip">skip</string>
+    <string name="hintTitle">Введите заголовок</string>
+    <string name="hintDesc">Введите описание</string>
+    <string name="todo">TODO</string>
+    <string name="photo">PHOTO</string>
+    <string name="_29">29 Апреля</string>
+    <string name="subtitle">subTitle</string>
 </resources>
